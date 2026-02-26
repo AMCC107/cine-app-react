@@ -1,10 +1,6 @@
-// Hook de React para manejar estado
 import { useState } from "react"
-
-// Componentes
 import Header from "./components/Header"
 
-// Vistas
 import Home from "./pages/Home"
 import Cartelera from "./pages/Cartelera"
 import Detalle from "./pages/Detalle"
@@ -12,24 +8,59 @@ import Alimentos from "./pages/Alimentos"
 import Otros from "./pages/Otros"
 
 function App() {
-  // Estado que controla qué vista se muestra
   const [vistaActual, setVistaActual] = useState("home")
+  const [peliculaSeleccionada, setPeliculaSeleccionada] = useState(null)
+  const [favoritos, setFavoritos] = useState([])
+
+  function toggleFavorito(pelicula) {
+    setFavoritos((prev) => {
+      const existe = prev.some((fav) => fav.id === pelicula.id)
+      if (existe) {
+        return prev.filter((fav) => fav.id !== pelicula.id)
+      } else {
+        return [...prev, pelicula]
+      }
+    })
+  }
+
+  function verDetalle(pelicula) {
+    setPeliculaSeleccionada(pelicula)
+    setVistaActual("detalle")
+  }
 
   return (
-    // Contenedor raíz de la aplicación
-    <div style={{ minHeight: "100vh", backgroundColor: "#0B2B5C", fontFamily: "sans-serif" }}>
-      {/* Header puede cambiar la vista */}
-      <Header cambiarVista={setVistaActual} />
+    <div style={{ minHeight: "100vh", backgroundColor: "#121212" }}>
+      <Header
+        cambiarVista={setVistaActual}
+        favoritos={favoritos}
+        toggleFavorito={toggleFavorito}
+        verDetalle={verDetalle}
+      />
 
-      {/* Renderizado condicional de vistas */}
-      {vistaActual === "home" && <Home cambiarVista={setVistaActual} />}
-      {vistaActual === "cartelera" && <Cartelera cambiarVista={setVistaActual} />}
-      {vistaActual === "detalle" && <Detalle />}
+      {vistaActual === "home" && (
+        <Home
+          verDetalle={verDetalle}
+          favoritos={favoritos}
+          toggleFavorito={toggleFavorito}
+        />
+      )}
+
+      {vistaActual === "cartelera" && (
+        <Cartelera
+          verDetalle={verDetalle}
+          favoritos={favoritos}
+          toggleFavorito={toggleFavorito}
+        />
+      )}
+
+      {vistaActual === "detalle" && (
+        <Detalle pelicula={peliculaSeleccionada} />
+      )}
+
       {vistaActual === "alimentos" && <Alimentos />}
       {vistaActual === "otros" && <Otros />}
     </div>
   )
 }
 
-// Exportamos App
 export default App

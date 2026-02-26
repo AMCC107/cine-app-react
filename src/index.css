@@ -42,12 +42,6 @@ header h1 {
 
 main {
   padding: var(--spacing-lg);
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-lg);
-  justify-content: center;
 }
 
 .movie-card {
