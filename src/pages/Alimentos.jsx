@@ -17,7 +17,7 @@ const comestibles = [
 const snacks = [
   { id: 1, nombre: "Palomitas Grandes", precio: "$85", imagen: "https://i.blogs.es/934bbc/1366_2000/450_1000.jpeg" },
   { id: 2, nombre: "Palomitas Medianas", precio: "$65", imagen: "https://i.blogs.es/934bbc/1366_2000/450_1000.jpeg" },
-  { id: 3, nombre: "Chocolates", precio: "$45", imagen: "https://media.istockphoto.com/id/522735736/es/foto/fondo-de-chocolate.jpg?w=400" },
+  { id: 3, nombre: "Chocolates", precio: "$45", imagen: "https://www.bupasalud.com.mx/sites/default/files/styles/640_x_400/public/articulos/2023-09/fotos/chocolate-oscuro.jpg?itok=Qz67dnOY" },
   { id: 4, nombre: "Dulces Variados", precio: "$35", imagen: "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=400" }
 ]
 

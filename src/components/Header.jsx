@@ -1,16 +1,21 @@
+import { useNavigate } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import FavoritesDropdown from "./FavoritesDropdown"
 
-function Header({ cambiarVista, favoritos = [], toggleFavorito, verDetalle }) {
-  const navLinkStyle = {
+function Header({ favoritos = [], toggleFavorito }) {
+  const navigate = useNavigate()
+
+  const navLinkBaseStyle = {
     cursor: "pointer",
-    color: "#FFFFFF",
     fontFamily: "sans-serif",
     fontSize: "15px",
     padding: "8px 14px",
     borderRadius: "8px",
-    transition: "background-color 0.2s ease",
-    backgroundColor: "transparent"
+    transition: "color 0.2s ease, background-color 0.2s ease",
+    backgroundColor: "transparent",
+    textDecoration: "none"
   }
+
   const buttonPrimaryStyle = {
     cursor: "pointer",
     backgroundColor: "#FFC107",
@@ -21,7 +26,8 @@ function Header({ cambiarVista, favoritos = [], toggleFavorito, verDetalle }) {
     fontFamily: "sans-serif",
     fontSize: "15px",
     fontWeight: "600",
-    boxShadow: "0 2px 4px rgba(0,0,0,0.15)"
+    boxShadow: "0 2px 4px rgba(0,0,0,0.15)",
+    textDecoration: "none"
   }
 
   return (
@@ -48,19 +54,20 @@ function Header({ cambiarVista, favoritos = [], toggleFavorito, verDetalle }) {
           gap: "12px"
         }}
       >
-        <h1
-          style={{
+        <NavLink
+          to="/"
+          style={({ isActive }) => ({
             margin: 0,
-            color: "#FFFFFF",
+            color: isActive ? "#FEC429" : "#FFFFFF",
             fontFamily: "sans-serif",
             fontSize: "26px",
             fontWeight: "700",
-            cursor: "pointer"
-          }}
-          onClick={() => cambiarVista("home")}
+            cursor: "pointer",
+            textDecoration: "none"
+          })}
         >
           🎬 Cinépolis
-        </h1>
+        </NavLink>
 
         <nav
           style={{
@@ -70,28 +77,49 @@ function Header({ cambiarVista, favoritos = [], toggleFavorito, verDetalle }) {
             flexWrap: "wrap"
           }}
         >
-          <span style={navLinkStyle} onClick={() => cambiarVista("home")}>
+          <NavLink
+            to="/"
+            style={({ isActive }) => ({
+              ...navLinkBaseStyle,
+              color: isActive ? "#FEC429" : "#FFFFFF"
+            })}
+          >
             Inicio
-          </span>
-          <button
-            type="button"
-            style={buttonPrimaryStyle}
-            onClick={() => cambiarVista("cartelera")}
+          </NavLink>
+          <NavLink
+            to="/cartelera"
+            style={({ isActive }) => ({
+              ...buttonPrimaryStyle,
+              color: isActive ? "#FEC429" : "#000",
+              backgroundColor: isActive ? "transparent" : "#FFC107",
+              border: isActive ? "2px solid #FEC429" : "none"
+            })}
           >
             Cartelera
-          </button>
-          <span style={navLinkStyle} onClick={() => cambiarVista("alimentos")}>
+          </NavLink>
+          <NavLink
+            to="/alimentos"
+            style={({ isActive }) => ({
+              ...navLinkBaseStyle,
+              color: isActive ? "#FEC429" : "#FFFFFF"
+            })}
+          >
             Alimentos
-          </span>
-          <span style={navLinkStyle} onClick={() => cambiarVista("otros")}>
+          </NavLink>
+          <NavLink
+            to="/otros"
+            style={({ isActive }) => ({
+              ...navLinkBaseStyle,
+              color: isActive ? "#FEC429" : "#FFFFFF"
+            })}
+          >
             Servicios
-          </span>
+          </NavLink>
 
-          {/* Dropdown de favoritos */}
           <FavoritesDropdown
             favoritos={favoritos}
             onQuitar={toggleFavorito}
-            onVerDetalle={verDetalle}
+            onVerDetalle={(pelicula) => navigate(`/pelicula/${pelicula.id}`)}
           />
         </nav>
       </div>

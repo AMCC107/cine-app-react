@@ -1,14 +1,17 @@
 import { useState } from "react"
+import { useParams } from "react-router-dom"
+import { getPeliculaById } from "../data/peliculas"
 
-function Detalle({ pelicula }) {
-  // Estados para el formulario controlado
+function Detalle() {
+  const { id } = useParams()
+  const pelicula = getPeliculaById(id)
+
   const [nombre, setNombre] = useState("")
   const [correo, setCorreo] = useState("")
   const [cantidadBoletos, setCantidadBoletos] = useState(1)
   const [horario, setHorario] = useState("")
   const [mensajeConfirmacion, setMensajeConfirmacion] = useState(null)
 
-  // Si no hay película seleccionada
   if (!pelicula) {
     return (
       <main
@@ -19,17 +22,14 @@ function Detalle({ pelicula }) {
           fontFamily: "sans-serif"
         }}
       >
-        <h2>No hay película seleccionada</h2>
-        <p style={{ color: "#888" }}>Selecciona una película desde la cartelera.</p>
+        <h2>Película no encontrada</h2>
+        <p style={{ color: "#888" }}>No existe una película con ese identificador. Verifica la URL o regresa a la cartelera.</p>
       </main>
     )
   }
 
-  // Evento onSubmit del formulario
   function manejarCompra(e) {
     e.preventDefault()
-
-    // Mostrar datos dinámicamente después de enviar
     setMensajeConfirmacion({
       nombre,
       correo,
@@ -37,8 +37,6 @@ function Detalle({ pelicula }) {
       horario,
       pelicula: pelicula.titulo
     })
-
-    // Limpiar formulario
     setNombre("")
     setCorreo("")
     setCantidadBoletos(1)
@@ -54,7 +52,6 @@ function Detalle({ pelicula }) {
         fontFamily: "sans-serif"
       }}
     >
-      {/* Info de la película */}
       <div
         style={{
           display: "grid",
@@ -126,7 +123,6 @@ function Detalle({ pelicula }) {
         </div>
       </div>
 
-      {/* Formulario de compra de boletos */}
       <div
         style={{
           backgroundColor: "#1e1e1e",
@@ -148,7 +144,6 @@ function Detalle({ pelicula }) {
 
         <form onSubmit={manejarCompra}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
-            {/* Input: Nombre */}
             <div>
               <label
                 style={{
@@ -179,8 +174,6 @@ function Detalle({ pelicula }) {
                 }}
               />
             </div>
-
-            {/* Input: Correo */}
             <div>
               <label
                 style={{
@@ -211,8 +204,6 @@ function Detalle({ pelicula }) {
                 }}
               />
             </div>
-
-            {/* Input: Cantidad de boletos */}
             <div>
               <label
                 style={{
@@ -244,8 +235,6 @@ function Detalle({ pelicula }) {
                 }}
               />
             </div>
-
-            {/* Select: Horario */}
             <div>
               <label
                 style={{
@@ -283,7 +272,6 @@ function Detalle({ pelicula }) {
             </div>
           </div>
 
-          {/* Botón de envío */}
           <button
             type="submit"
             style={{
@@ -303,7 +291,6 @@ function Detalle({ pelicula }) {
           </button>
         </form>
 
-        {/* Mensaje de confirmación después de enviar */}
         {mensajeConfirmacion && (
           <div
             style={{
