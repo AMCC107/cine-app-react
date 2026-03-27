@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import MovieCard from "../components/MovieCard"
-import { peliculasCartelera } from "../data/peliculas"
+import { peliculasCartelera } from "../data/peliculasData"
 
 function Cartelera({ favoritos, toggleFavorito }) {
   const navigate = useNavigate()

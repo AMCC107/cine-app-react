@@ -1,8 +1,9 @@
 /**
- * Fuente única de datos de películas para la app.
- * Usado por Detalle (useParams) para resolver película por :id.
+ * Datos de películas y utilidades de consulta.
+ * Fuente única para Home, Cartelera y Detalle (resolución por id).
  */
-const peliculasHome = [
+
+export const peliculasHome = [
   {
     id: 1,
     titulo: "Avatar: Fuego y Cenizas",
@@ -53,7 +54,7 @@ const peliculasHome = [
   }
 ]
 
-const peliculasCartelera = [
+export const peliculasCartelera = [
   {
     id: 101,
     titulo: "Shingeki No Kyojin: The Final Season",
@@ -104,12 +105,10 @@ const peliculasCartelera = [
   }
 ]
 
-const todasLasPeliculas = [...peliculasHome, ...peliculasCartelera]
+export const todasLasPeliculas = [...peliculasHome, ...peliculasCartelera]
 
 export function getPeliculaById(id) {
   const numId = Number(id)
   if (Number.isNaN(numId)) return null
   return todasLasPeliculas.find((p) => p.id === numId) ?? null
 }
-
-export { peliculasHome, peliculasCartelera, todasLasPeliculas }

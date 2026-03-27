@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import MovieCard from "../components/MovieCard"
 import Noticias from "../components/Noticias"
 import MovieCarousel from "../components/MovieCarousel"
-import { peliculasHome } from "../data/peliculas"
+import { peliculasHome } from "../data/peliculasData"
 
 function Home({ favoritos, toggleFavorito }) {
   const navigate = useNavigate()
@@ -65,7 +65,7 @@ function Home({ favoritos, toggleFavorito }) {
               duration={pelicula.duration}
               esFavorito={favoritos.some((fav) => fav.id === pelicula.id)}
               onToggleFavorito={() => toggleFavorito(pelicula)}
-              onVerDetalle={() => navigate(`/pelicula/${pelicula.id}`, { state: { pelicula } })}
+              onVerDetalle={() => navigate(`/pelicula/${pelicula.id}`)}
             />
           ))}
         </div>

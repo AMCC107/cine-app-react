@@ -82,7 +82,6 @@ function Footer() {
         fontSize: "12px",
         color: "#A0AAB2"
       }}>
-        <span>Sitio desarrollado para proyecto académico</span>
         <span>f 𝕏 📷</span> {/* Iconos sociales simulados */}
       </div>
     </footer>

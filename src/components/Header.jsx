@@ -1,5 +1,4 @@
-import { useNavigate } from "react-router-dom"
-import { NavLink } from "react-router-dom"
+import { useNavigate, NavLink } from "react-router-dom"
 import FavoritesDropdown from "./FavoritesDropdown"
 
 function Header({ favoritos = [], toggleFavorito }) {

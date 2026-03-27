@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useParams } from "react-router-dom"
-import { getPeliculaById } from "../data/peliculas"
+import { getPeliculaById } from "../data/peliculasData"
 
 function Detalle() {
   const { id } = useParams()
