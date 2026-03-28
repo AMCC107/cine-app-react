@@ -14,16 +14,9 @@ function Detalle() {
 
   if (!pelicula) {
     return (
-      <main
-        style={{
-          padding: "24px",
-          textAlign: "center",
-          color: "#FFFFFF",
-          fontFamily: "sans-serif"
-        }}
-      >
+      <main className="detalle-not-found">
         <h2>Película no encontrada</h2>
-        <p style={{ color: "#888" }}>No existe una película con ese identificador. Verifica la URL o regresa a la cartelera.</p>
+        <p>No existe una película con ese identificador. Verifica la URL o regresa a la cartelera.</p>
       </main>
     )
   }
@@ -44,224 +37,74 @@ function Detalle() {
   }
 
   return (
-    <main
-      style={{
-        padding: "24px 16px",
-        maxWidth: "900px",
-        margin: "0 auto",
-        fontFamily: "sans-serif"
-      }}
-    >
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 2fr",
-          gap: "24px",
-          marginBottom: "32px"
-        }}
-      >
-        <img
-          src={pelicula.imagen}
-          alt={pelicula.titulo}
-          style={{
-            width: "100%",
-            borderRadius: "12px",
-            boxShadow: "0 4px 20px rgba(0,0,0,0.5)"
-          }}
-        />
+    <main className="detalle-main">
+      <div className="detalle-hero">
+        <img src={pelicula.imagen} alt={pelicula.titulo} className="detalle-poster" />
         <div>
-          <h2
-            style={{
-              margin: "0 0 16px 0",
-              color: "#FFFFFF",
-              fontSize: "32px",
-              fontWeight: "700"
-            }}
-          >
-            {pelicula.titulo}
-          </h2>
-          <p
-            style={{
-              color: "#ccc",
-              fontSize: "16px",
-              lineHeight: "1.6",
-              marginBottom: "16px"
-            }}
-          >
-            {pelicula.descripcion || "Una experiencia cinematográfica única."}
-          </p>
-          {pelicula.rating && (
-            <span
-              style={{
-                display: "inline-block",
-                padding: "6px 12px",
-                backgroundColor: "#FFC107",
-                color: "#000",
-                borderRadius: "6px",
-                fontSize: "14px",
-                fontWeight: "600",
-                marginRight: "8px"
-              }}
-            >
-              {pelicula.rating}
-            </span>
-          )}
-          {pelicula.duration && (
-            <span
-              style={{
-                display: "inline-block",
-                padding: "6px 12px",
-                backgroundColor: "#333",
-                color: "#FFF",
-                borderRadius: "6px",
-                fontSize: "14px"
-              }}
-            >
-              {pelicula.duration}
-            </span>
-          )}
+          <h2 className="detalle-title">{pelicula.titulo}</h2>
+          <p className="detalle-desc">{pelicula.descripcion || "Una experiencia cinematográfica única."}</p>
+          {pelicula.rating && <span className="badge-rating">{pelicula.rating}</span>}
+          {pelicula.duration && <span className="badge-duration">{pelicula.duration}</span>}
         </div>
       </div>
 
-      <div
-        style={{
-          backgroundColor: "#1e1e1e",
-          borderRadius: "12px",
-          padding: "24px",
-          border: "1px solid #333"
-        }}
-      >
-        <h3
-          style={{
-            margin: "0 0 20px 0",
-            color: "#FFFFFF",
-            fontSize: "22px",
-            fontWeight: "600"
-          }}
-        >
-          Comprar Boletos
-        </h3>
-
+      <div className="detalle-compra-box">
+        <h3>Comprar Boletos</h3>
         <form onSubmit={manejarCompra}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+          <div className="form-grid-2">
             <div>
-              <label
-                style={{
-                  display: "block",
-                  color: "#FFFFFF",
-                  fontSize: "14px",
-                  marginBottom: "6px",
-                  fontWeight: "500"
-                }}
-              >
+              <label className="form-label" htmlFor="detalle-nombre">
                 Nombre completo
               </label>
               <input
+                id="detalle-nombre"
+                className="form-input"
                 type="text"
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
                 placeholder="Tu nombre"
                 required
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  backgroundColor: "#2a2a2a",
-                  border: "1px solid #444",
-                  borderRadius: "8px",
-                  color: "#FFFFFF",
-                  fontSize: "15px",
-                  boxSizing: "border-box"
-                }}
               />
             </div>
             <div>
-              <label
-                style={{
-                  display: "block",
-                  color: "#FFFFFF",
-                  fontSize: "14px",
-                  marginBottom: "6px",
-                  fontWeight: "500"
-                }}
-              >
+              <label className="form-label" htmlFor="detalle-correo">
                 Correo electrónico
               </label>
               <input
+                id="detalle-correo"
+                className="form-input"
                 type="email"
                 value={correo}
                 onChange={(e) => setCorreo(e.target.value)}
                 placeholder="tu@correo.com"
                 required
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  backgroundColor: "#2a2a2a",
-                  border: "1px solid #444",
-                  borderRadius: "8px",
-                  color: "#FFFFFF",
-                  fontSize: "15px",
-                  boxSizing: "border-box"
-                }}
               />
             </div>
             <div>
-              <label
-                style={{
-                  display: "block",
-                  color: "#FFFFFF",
-                  fontSize: "14px",
-                  marginBottom: "6px",
-                  fontWeight: "500"
-                }}
-              >
+              <label className="form-label" htmlFor="detalle-cantidad">
                 Cantidad de boletos
               </label>
               <input
+                id="detalle-cantidad"
+                className="form-input"
                 type="number"
                 min="1"
                 max="10"
                 value={cantidadBoletos}
-                onChange={(e) => setCantidadBoletos(e.target.value)}
+                onChange={(e) => setCantidadBoletos(Number(e.target.value))}
                 required
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  backgroundColor: "#2a2a2a",
-                  border: "1px solid #444",
-                  borderRadius: "8px",
-                  color: "#FFFFFF",
-                  fontSize: "15px",
-                  boxSizing: "border-box"
-                }}
               />
             </div>
             <div>
-              <label
-                style={{
-                  display: "block",
-                  color: "#FFFFFF",
-                  fontSize: "14px",
-                  marginBottom: "6px",
-                  fontWeight: "500"
-                }}
-              >
+              <label className="form-label" htmlFor="detalle-horario">
                 Selecciona horario
               </label>
               <select
+                id="detalle-horario"
+                className="form-select"
                 value={horario}
                 onChange={(e) => setHorario(e.target.value)}
                 required
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  backgroundColor: "#2a2a2a",
-                  border: "1px solid #444",
-                  borderRadius: "8px",
-                  color: "#FFFFFF",
-                  fontSize: "15px",
-                  boxSizing: "border-box",
-                  cursor: "pointer"
-                }}
               >
                 <option value="">-- Elige un horario --</option>
                 <option value="14:00">14:00 hrs</option>
@@ -271,46 +114,15 @@ function Detalle() {
               </select>
             </div>
           </div>
-
-          <button
-            type="submit"
-            style={{
-              marginTop: "20px",
-              padding: "14px 28px",
-              backgroundColor: "#FFC107",
-              color: "#000",
-              border: "none",
-              borderRadius: "8px",
-              fontSize: "16px",
-              fontWeight: "600",
-              cursor: "pointer",
-              transition: "background-color 0.2s ease"
-            }}
-          >
+          <button type="submit" className="btn-comprar">
             Confirmar Compra
           </button>
         </form>
 
         {mensajeConfirmacion && (
-          <div
-            style={{
-              marginTop: "24px",
-              padding: "20px",
-              backgroundColor: "#1b4332",
-              borderRadius: "8px",
-              border: "1px solid #40916c"
-            }}
-          >
-            <h4
-              style={{
-                margin: "0 0 12px 0",
-                color: "#95d5b2",
-                fontSize: "18px"
-              }}
-            >
-              ¡Compra exitosa!
-            </h4>
-            <p style={{ margin: 0, color: "#d8f3dc", lineHeight: "1.6" }}>
+          <div className="alert-compra-ok">
+            <h4>¡Compra exitosa!</h4>
+            <p>
               Gracias <strong>{mensajeConfirmacion.nombre}</strong>, has comprado{" "}
               <strong>{mensajeConfirmacion.cantidad} boleto(s)</strong> para{" "}
               <strong>{mensajeConfirmacion.pelicula}</strong> en el horario de{" "}

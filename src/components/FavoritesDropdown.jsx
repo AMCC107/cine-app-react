@@ -4,7 +4,6 @@ function FavoritesDropdown({ favoritos, onQuitar, onVerDetalle }) {
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef(null)
 
-  // Cerrar dropdown al hacer clic fuera
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -23,7 +22,6 @@ function FavoritesDropdown({ favoritos, onQuitar, onVerDetalle }) {
 
   return (
     <div ref={dropdownRef} style={{ position: "relative" }}>
-      {/* Botón del corazón */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -57,7 +55,6 @@ function FavoritesDropdown({ favoritos, onQuitar, onVerDetalle }) {
         </span>
       </button>
 
-      {/* Menú desplegable */}
       {isOpen && (
         <div
           style={{
@@ -82,7 +79,6 @@ function FavoritesDropdown({ favoritos, onQuitar, onVerDetalle }) {
             }
           `}</style>
 
-          {/* Header del dropdown */}
           <div
             style={{
               padding: "16px",
@@ -103,7 +99,6 @@ function FavoritesDropdown({ favoritos, onQuitar, onVerDetalle }) {
             </h4>
           </div>
 
-          {/* Lista de favoritos */}
           <div
             style={{
               maxHeight: "320px",
@@ -161,7 +156,6 @@ function FavoritesDropdown({ favoritos, onQuitar, onVerDetalle }) {
                     }
                   }}
                 >
-                  {/* Imagen miniatura */}
                   <img
                     src={pelicula.imagen}
                     alt={pelicula.titulo}
@@ -174,7 +168,6 @@ function FavoritesDropdown({ favoritos, onQuitar, onVerDetalle }) {
                     }}
                   />
 
-                  {/* Info de la película */}
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <h5
                       style={{
@@ -207,7 +200,6 @@ function FavoritesDropdown({ favoritos, onQuitar, onVerDetalle }) {
                     )}
                   </div>
 
-                  {/* Botón quitar */}
                   <button
                     type="button"
                     onClick={(e) => {
@@ -238,7 +230,6 @@ function FavoritesDropdown({ favoritos, onQuitar, onVerDetalle }) {
             )}
           </div>
 
-          {/* Footer del dropdown */}
           {favoritos.length > 0 && (
             <div
               style={{

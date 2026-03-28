@@ -1,8 +1,3 @@
-/**
- * Datos de películas y utilidades de consulta.
- * Fuente única para Home, Cartelera y Detalle (resolución por id).
- */
-
 export const peliculasHome = [
   {
     id: 1,

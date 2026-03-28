@@ -1,12 +1,10 @@
 import { useState } from "react"
 
 function ClubForm() {
-  // Estados para el formulario controlado
   const [nombre, setNombre] = useState("")
   const [correo, setCorreo] = useState("")
   const [submittedData, setSubmittedData] = useState(null)
 
-  // Maneja el evento onSubmit
   function handleSubmit(e) {
     e.preventDefault()
     setSubmittedData({ nombre, correo })
@@ -126,7 +124,6 @@ function ClubForm() {
         </button>
       </form>
 
-      {/* Información mostrada dinámicamente después de enviar */}
       {submittedData && (
         <div
           style={{

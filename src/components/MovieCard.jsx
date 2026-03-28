@@ -10,7 +10,6 @@ function MovieCard({
   esFavorito = false,
   onToggleFavorito
 }) {
-  // Estado local para mostrar/ocultar la descripción
   const [mostrarDescripcion, setMostrarDescripcion] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 
@@ -30,7 +29,6 @@ function MovieCard({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Imagen del poster */}
       <div
         style={{
           position: "relative",
@@ -52,7 +50,6 @@ function MovieCard({
           }}
         />
 
-        {/* Badges superpuestos */}
         <div
           style={{
             position: "absolute",
@@ -88,7 +85,6 @@ function MovieCard({
           </span>
         </div>
 
-        {/* Botón de favorito en esquina superior derecha */}
         <button
           type="button"
           onClick={(e) => {
@@ -117,9 +113,7 @@ function MovieCard({
         </button>
       </div>
 
-      {/* Contenido de la tarjeta */}
       <div style={{ padding: "16px" }}>
-        {/* Título */}
         <h3
           style={{
             margin: "0 0 12px 0",
@@ -132,9 +126,7 @@ function MovieCard({
           {title}
         </h3>
 
-        {/* Botones de acción */}
         <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "12px" }}>
-          {/* Botón mostrar/ocultar descripción */}
           <button
             type="button"
             onClick={() => setMostrarDescripcion((prev) => !prev)}
@@ -153,7 +145,6 @@ function MovieCard({
             {mostrarDescripcion ? "Ocultar descripción" : "Ver descripción"}
           </button>
 
-          {/* Botón ver detalle */}
           {onVerDetalle && (
             <button
               type="button"
@@ -175,7 +166,6 @@ function MovieCard({
           )}
         </div>
 
-        {/* Descripción (mostrar/ocultar con animación) */}
         <div
           style={{
             maxHeight: mostrarDescripcion ? "200px" : "0",

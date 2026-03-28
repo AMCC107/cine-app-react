@@ -1,91 +1,39 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 function Footer() {
-  const navigate = useNavigate();
-
-  const footerStyle = {
-    backgroundColor: "#0B1521", 
-    color: "#FFFFFF",
-    padding: "48px 24px",
-    fontFamily: "sans-serif",
-    marginTop: "auto"
-  };
-
-  const containerStyle = {
-    maxWidth: "1200px",
-    margin: "0 auto",
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-    gap: "32px"
-  };
-
-  const titleStyle = {
-    fontSize: "18px",
-    fontWeight: "bold",
-    marginBottom: "16px"
-  };
-
-  const linkStyle = {
-    color: "#A0AAB2",
-    display: "block",
-    marginBottom: "12px",
-    cursor: "pointer",
-    fontSize: "14px",
-    textDecoration: "none"
-  };
+  const navigate = useNavigate()
 
   return (
-    <footer style={footerStyle}>
-      <div style={containerStyle}>
-        
-        {/* Columna 1 */}
+    <footer className="site-footer">
+      <div className="site-footer__grid">
         <div>
-          <h3 style={titleStyle}>Cartelera</h3>
-          <span style={linkStyle}>Garantía Cinépolis</span>
-          <span style={linkStyle}>+Que Cine</span>
+          <h3 className="site-footer__title">Cartelera</h3>
+          <span className="site-footer__link">Garantía Cinépolis</span>
+          <span className="site-footer__link">+Que Cine</span>
         </div>
 
-        {/* Columna 2 - Legales (Interactiva) */}
         <div>
-          <h3 style={titleStyle}>Legales</h3>
-          <span 
-            style={{...linkStyle, color: "#FFFFFF", fontWeight: "bold"}} 
-            onClick={() => navigate('/terminos')}
-          >
+          <h3 className="site-footer__title">Legales</h3>
+          <span className="site-footer__link site-footer__link--action" onClick={() => navigate("/terminos")}>
             Términos y condiciones
           </span>
-          <span style={linkStyle}>Aviso de privacidad</span>
+          <span className="site-footer__link">Aviso de privacidad</span>
         </div>
 
-        {/* Columna 3 - Contacto (Interactiva) */}
         <div>
-          <h3 style={titleStyle}>Contacto</h3>
-          <span 
-            style={{...linkStyle, color: "#FFFFFF", fontWeight: "bold"}} 
-            onClick={() => navigate('/contacto')}
-          >
+          <h3 className="site-footer__title">Contacto</h3>
+          <span className="site-footer__link site-footer__link--action" onClick={() => navigate("/contacto")}>
             Atención a clientes
           </span>
-          <span style={linkStyle}>T. 552 122 6060</span>
+          <span className="site-footer__link">T. 552 122 6060</span>
         </div>
-
       </div>
 
-      {/* Barra inferior */}
-      <div style={{
-        maxWidth: "1200px",
-        margin: "32px auto 0",
-        borderTop: "1px solid #1E2D3D",
-        paddingTop: "16px",
-        display: "flex",
-        justifyContent: "space-between",
-        fontSize: "12px",
-        color: "#A0AAB2"
-      }}>
-        <span>f 𝕏 📷</span> {/* Iconos sociales simulados */}
+      <div className="site-footer__bar">
+        <span>f 𝕏 📷</span>
       </div>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

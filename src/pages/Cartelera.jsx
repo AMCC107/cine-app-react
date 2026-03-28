@@ -6,31 +6,9 @@ function Cartelera({ favoritos, toggleFavorito }) {
   const navigate = useNavigate()
 
   return (
-    <main
-      style={{
-        padding: "24px",
-        fontFamily: "sans-serif"
-      }}
-    >
-      <h2
-        style={{
-          color: "#FFFFFF",
-          fontSize: "28px",
-          fontWeight: "700",
-          marginBottom: "24px",
-          marginTop: 0
-        }}
-      >
-        🎬 Cartelera Completa
-      </h2>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-          gap: "24px"
-        }}
-      >
+    <main className="page-cartelera">
+      <h2 className="cartelera-title">🎬 Cartelera Completa</h2>
+      <div className="grid-cartelera">
         {peliculasCartelera.map((pelicula) => (
           <MovieCard
             key={pelicula.id}
